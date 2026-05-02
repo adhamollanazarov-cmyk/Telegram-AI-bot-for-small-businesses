@@ -1,2 +1,8 @@
 [phases.setup]
-nixPkgs = ["postgresql"]
+nixPkgs = ["python311", "postgresql"]
+
+[phases.install]
+cmds = ["python3.11 -m venv --copies /opt/venv && . /opt/venv/bin/activate && pip install -r requirements.txt"]
+
+[start]
+cmd = "alembic upgrade head && python3.11 main.py"
